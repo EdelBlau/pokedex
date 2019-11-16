@@ -1,1 +1,3 @@
 scrapy
+neo4j
+neomodel
