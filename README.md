@@ -1,64 +1,58 @@
+# 1. Instalación del proyecto
 
+1. Asegúrate de que tienes Python instalado con una versión superior a la 3.4
 
-# install with pip
-pip3 install virtualenv
+2. Crea un virtual environment para el proyecto:
+    ```bash
+    $ python3 -m venv venv
+    ```
 
-virtualenv myvenv
+3. Instala la librería de scrapy:
+    ```
+    $ pip install scrapy
+    ```
 
-.\myvenv\Scripts\activate
+4. Crea un proyecto de scrapy llamado `tutorial`:
+    ```
+    $ scrapy startproject tutorial
+    ```
+    Ésto te creará la siguiente estructura de carpetas:
+    ```
+    tutorial
+    - scrapy.cfg
+    - tutorial/
+        - items.py  
+        - middlewares.py 
+        - pipelines.py 
+        - settings.py 
+        - spiders/
+    ```
+    
+5. A continuación, sitúate en la carpeta `tutorial` y crea un nuevo spider para la página que vamos a utilizar en el taller (`pokemon.com`):
+    ```
+    $ cd tutorial
+    $ scrapy genspider pokedex 'pokemon.com'
+    ```
+    Ésto te generará un fichero `pokedex.py` dentro de la carpeta `spiders/` con el siguiente contenido:
+    ```python
+    # -*- coding: utf-8 -*-
+    import scrapy
+    
+    
+    class PokedexSpider(scrapy.Spider):
+        name = 'pokedex'
+        allowed_domains = ['pokemon.com']
+        start_urls = ['http://pokemon.com/']
+    
+        def parse(self, response):
+            pass
 
-pip install Scrapy
-
-# install with conda
-conda create --name venv python=3.7
-
-conda activate venv
-
-conda install -c conda-forge scrapy
-
-# Creating a new Scrapy project
-
-scrapy startproject tutorial
-
-# run spider
-
-scrapy crawl quotes
-
-# shell
-
-scrapy shell 'http://quotes.toscrape.com/page/1/'
-response.css('title')
-response.css('title::text').getall()
-response.xpath('//title/text()').get()
-
-# store data
-
-scrapy crawl quotes -o quotes.json
-
-# Changing spider to recursively follow links
-
-response.css('li.next a::attr(href)').get()
-response.css('li.next a').attrib['href']
-
-for href in response.css('li.next a::attr(href)'):
-    yield response.follow(href, callback=self.parse)
-
-# Using spider arguments
-
-scrapy crawl quotes -o quotes-humor.json -a tag=humor
-
-    def __init__(self, *args, **kwargs):
-
-        super(QDQSpider, self).__init__(*args, **kwargs)
-        self.start_urls = [
-            "http://es.qdq.com/"+ kwargs.get('category') +"/"
-        ]
-
-# middleware
-
-process_spider_input(response, spider):
-    if response.status == 200
-        #do what ever you want
-        print 'OK 200'
-    else: 
-    	print 'error on request. Retry'
+    ```
+    
+6. En este punto ya podríamos ejecutar el spider con el siguiente comando:
+    ```bash
+    $ scrapy crawl pokedex
+    ```
+    Pero no veremos ningún resultado porque no le hemos indicado al spider qué debe de descargar ni donde.
+    
+En el siguiente capítulo veremos cómo configurar el spider para extraer información de la web.
