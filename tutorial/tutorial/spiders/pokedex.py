@@ -22,4 +22,9 @@ class PokedexSpider(scrapy.Spider):
         pokemon['weight'] = response.css('div.pokemon-ability-info ul li')[1]\
                                 .css("span.attribute-value::text").re_first(r'\d{1,2}[\,\.]{1}\d{1,2}').replace(",", ".")
 
+        
+        # next pokemon
+        url = response.css("div.pokedex-pokemon-pagination a.next::attr(href)").extract_first()
+        yield Request(urljoin("https://www.pokemon.com", url), callback=self.parse)
+
         yield pokemon
