@@ -17,3 +17,11 @@ class PokemonItem(scrapy.Item):
     weight = scrapy.Field()
     evolution = scrapy.Field()
     type = scrapy.Field()
+
+class PokemonAttacksItem(scrapy.Item):
+    pokemon_id = scrapy.Field()
+    attack_list = scrapy.Field()
+
+class AttackItem(scrapy.Item):
+    name = scrapy.Field()
+    type = scrapy.Field()
