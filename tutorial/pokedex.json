@@ -1,0 +1,3 @@
+[
+{"id": "001", "name": "Bulbasaur", "description": "Bulbasaur can be seen napping in bright sunlight.\nThere is a seed on its back. By soaking up the sun's rays,\nthe seed grows progressively larger.", "evolution": ["001", "002", "003"], "type": ["Grass", "Poison"], "height": "0.7", "weight": "6.9"}
+]
