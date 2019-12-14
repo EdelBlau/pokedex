@@ -43,7 +43,7 @@ En este repo encontrarás el material del taller de scrapy preparado por [Irene 
 5. A continuación, sitúate en la carpeta `tutorial` y crea un nuevo spider para la página que vamos a utilizar en el taller (`pokemon.com`):
     ```
     $ cd tutorial
-    $ scrapy genspider pokedex 'pokemon.com'
+    $ scrapy genspider pokedex pokemon.com
     ```
     Ésto te generará un fichero `pokedex.py` dentro de la carpeta `spiders/` con el siguiente contenido:
     ```python
